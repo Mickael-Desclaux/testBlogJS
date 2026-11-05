@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const articleController = require("../controllers/article.controller");
+const commentController = require("../controllers/comment.controller");
 const verifyToken = require("../middleware/auth");
 const upload = require("../middleware/upload");
+const { commentLimiter } = require("../middleware/rateLimit");
 
 router.get("/", articleController.getAllArticles);
 router.get("/:id", articleController.getArticleById);
@@ -19,5 +21,12 @@ router.put(
 	articleController.updateArticle,
 );
 router.delete("/:id", verifyToken, articleController.deleteArticle);
+
+router.post(
+	"/:id/comments",
+	verifyToken,
+	commentLimiter,
+	commentController.createComment,
+);
 
 module.exports = router;
