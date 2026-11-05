@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_URL } from '../config';
 import { useParams, Link } from 'react-router-dom';
 import API from '../api/axios';
 import { useAuth } from '../context/AuthContext';
@@ -35,7 +36,7 @@ const Profile = () => {
                 <div style={{ position: 'relative', width: '150px', height: '150px', margin: '0 auto 20px' }}>
                     {profile.avatar ? (
                         <img
-                            src={`http://localhost:5000${profile.avatar}`}
+                            src={`${API_URL}${profile.avatar}`}
                             alt={profile.username}
                             style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', border: '4px solid var(--primary)' }}
                         />

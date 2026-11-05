@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_URL } from '../config';
 import { useNavigate, useParams } from 'react-router-dom';
 import API from '../api/axios';
 import { Image as ImageIcon, Save } from 'lucide-react';
@@ -75,7 +76,7 @@ const EditArticle = () => {
                         {currentImage && (
                             <div style={{ marginBottom: '10px' }}>
                                 <p style={{ fontSize: '0.9rem', marginBottom: '5px' }}>Image actuelle :</p>
-                                <img src={`http://localhost:5000${currentImage}`} alt="preview" style={{ height: '100px', borderRadius: '8px' }} />
+                                <img src={`${API_URL}${currentImage}`} alt="preview" style={{ height: '100px', borderRadius: '8px' }} />
                             </div>
                         )}
                         <label className="btn glass" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content' }}>
