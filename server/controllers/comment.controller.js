@@ -41,7 +41,7 @@ exports.validateContent = validateContent;
 
 exports.getCommentsByArticleId = async (articleId) => {
 	const [rows] = await pool.query(
-		`${COMMENT_WITH_AUTHOR} WHERE comments.article_id = ? ORDER BY comments.created_at ASC`,
+		`${COMMENT_WITH_AUTHOR} WHERE comments.article_id = ? ORDER BY comments.created_at ASC, comments.id ASC`,
 		[articleId],
 	);
 	return rows;
