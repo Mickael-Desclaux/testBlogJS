@@ -10,7 +10,8 @@ exports.getProfile = async (req, res) => {
         if (rows.length === 0) return res.status(404).json({ message: 'User not found' });
         res.json(rows[0]);
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
     }
 };
 
@@ -42,6 +43,7 @@ exports.updateProfile = async (req, res) => {
         await pool.query(query, params);
         res.json({ message: 'Profile updated successfully' });
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
     }
 };

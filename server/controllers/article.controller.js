@@ -11,7 +11,8 @@ exports.getAllArticles = async (req, res) => {
         `);
 		res.json(rows);
 	} catch (err) {
-		res.status(500).json({ message: err.message });
+		console.error(err);
+		res.status(500).json({ message: "Server error" });
 	}
 };
 
@@ -33,7 +34,8 @@ exports.getArticleById = async (req, res) => {
 		const comments = await getCommentsByArticleId(req.params.id);
 		res.json({ ...rows[0], comments });
 	} catch (err) {
-		res.status(500).json({ message: err.message });
+		console.error(err);
+		res.status(500).json({ message: "Server error" });
 	}
 };
 
@@ -49,7 +51,8 @@ exports.createArticle = async (req, res) => {
 
 		res.status(201).json({ id: result.insertId, title, content, image });
 	} catch (err) {
-		res.status(500).json({ message: err.message });
+		console.error(err);
+		res.status(500).json({ message: "Server error" });
 	}
 };
 
@@ -76,7 +79,8 @@ exports.updateArticle = async (req, res) => {
 
 		res.json({ message: "Article updated successfully" });
 	} catch (err) {
-		res.status(500).json({ message: err.message });
+		console.error(err);
+		res.status(500).json({ message: "Server error" });
 	}
 };
 
@@ -94,6 +98,7 @@ exports.deleteArticle = async (req, res) => {
 		await pool.query("DELETE FROM articles WHERE id = ?", [req.params.id]);
 		res.json({ message: "Article deleted successfully" });
 	} catch (err) {
-		res.status(500).json({ message: err.message });
+		console.error(err);
+		res.status(500).json({ message: "Server error" });
 	}
 };
