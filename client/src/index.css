@@ -83,3 +83,145 @@ input:focus, textarea:focus {
   background: var(--primary-hover);
   transform: translateY(-1px);
 }
+
+.btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+/* Comments */
+.comment-section {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border);
+}
+
+.comment-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.comment-form,
+.comment-login {
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.comment-login a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.comment-form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.comment-hint,
+.comment-date,
+.comment-empty {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.comment-error {
+  color: #ef4444;
+  margin-top: 10px;
+}
+
+.comment-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.comment-item {
+  padding: 20px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.comment-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.comment-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.comment-actions .btn {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Rendered Markdown: restore spacing removed by the global reset */
+.comment-content {
+  overflow-wrap: anywhere;
+}
+
+.comment-content > * + * {
+  margin-top: 10px;
+}
+
+.comment-content ul,
+.comment-content ol {
+  padding-left: 24px;
+}
+
+.comment-content a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.comment-content blockquote {
+  padding-left: 12px;
+  border-left: 3px solid var(--primary);
+  color: var(--text-muted);
+}
+
+.comment-content code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.9em;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.comment-content pre {
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  overflow-x: auto;
+}
+
+.comment-content pre code {
+  padding: 0;
+  background: none;
+}
