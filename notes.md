@@ -1,2 +1,0 @@
-- messages d'erreurs DB en clair dans le signup
-- pas de gitignore dans le dossier server
