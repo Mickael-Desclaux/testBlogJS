@@ -28,22 +28,12 @@ const SANITIZE_CONFIG = {
 		"ul",
 		"ol",
 		"li",
-		"a",
 	],
-	ALLOWED_ATTR: ["href"],
-	// Only absolute http(s) and mailto links (blocks javascript:, data:, vbscript:...)
-	ALLOWED_URI_REGEXP: /^(?:https?:|mailto:)/i,
+	// No links and no attributes at all: <a> is removed, its text is kept
+	ALLOWED_ATTR: [],
 };
 
-// Dedicated instance so this hook does not affect other DOMPurify users
 const purify = DOMPurify(window);
-
-purify.addHook("afterSanitizeAttributes", (node) => {
-	if (node.tagName === "A" && node.hasAttribute("href")) {
-		node.setAttribute("target", "_blank");
-		node.setAttribute("rel", "noopener noreferrer nofollow");
-	}
-});
 
 export function renderComment(text) {
 	if (typeof text !== "string" || text.trim() === "") return "";

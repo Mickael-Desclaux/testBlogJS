@@ -195,11 +195,6 @@ input:focus, textarea:focus {
   padding-left: 24px;
 }
 
-.comment-content a {
-  color: var(--primary);
-  text-decoration: underline;
-}
-
 .comment-content blockquote {
   padding-left: 12px;
   border-left: 3px solid var(--primary);

@@ -84,22 +84,20 @@ describe("renderComment - XSS protection", () => {
 	});
 
 	it.each([
+		["Markdown link", "[x](https://example.com)"],
+		["mailto link", "[x](mailto:a@b.com)"],
+		["HTML link", '<a href="https://example.com">x</a>'],
+		["bare URL (GFM autolink)", "https://example.com"],
 		["javascript in Markdown", "[x](javascript:alert(1))"],
 		["javascript in HTML", '<a href="javascript:alert(1)">x</a>'],
-		["obfuscated javascript", '<a href="JaVaScRiPt:alert(1)">x</a>'],
 		["data URI", '<a href="data:text/html,<script>alert(1)</script>">x</a>'],
-	])("removes dangerous links (%s)", (_, input) => {
-		const link = render(input).querySelector("a");
-		expect(link?.hasAttribute("href") ?? false).toBe(false);
+	])("removes links (%s)", (_, input) => {
+		expect(render(input).querySelector("a, [href]")).toBeNull();
 	});
 
-	it("keeps http(s) and mailto links and opens them safely", () => {
-		const dom = render("[web](https://example.com) [mail](mailto:a@b.com)");
-		const [web, mail] = dom.querySelectorAll("a");
-
-		expect(web.getAttribute("href")).toBe("https://example.com");
-		expect(mail.getAttribute("href")).toBe("mailto:a@b.com");
-		expect(web.getAttribute("target")).toBe("_blank");
-		expect(web.getAttribute("rel")).toBe("noopener noreferrer nofollow");
+	it("keeps the text of a removed link", () => {
+		expect(render("[click here](https://example.com)").textContent.trim()).toBe(
+			"click here",
+		);
 	});
 });
