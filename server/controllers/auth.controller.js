@@ -7,7 +7,7 @@ exports.register = async (req, res) => {
         const { username, email, password } = req.body;
 
         // Check if user exists
-        const [existing] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+        const [existing] = await pool.query('SELECT id FROM users WHERE email = ? OR username = ?', [email, username]);
         if (existing.length > 0) return res.status(400).json({ message: 'User already exists' });
 
         const hashedPassword = await bcrypt.hash(password, 10);
