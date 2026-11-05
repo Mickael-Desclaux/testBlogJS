@@ -39,7 +39,7 @@ app.use((err, req, res, next) => {
 
 	if (status >= 500) {
 		console.error(err);
-		return res.status(status).json({ message: "Erreur serveur" });
+		return res.status(status).json({ message: "Server error" });
 	}
 	res.status(status).json({ message: err.message });
 });
